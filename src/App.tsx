@@ -1,12 +1,13 @@
 import { useState } from "react";
 import "./App.css";
+import Post from "./components/Post";
 
 function App() {
   const [count, setCount] = useState<number>(0);
 
   return (
     <div className="App">
-      <h1>Vite + React + TS</h1>
+      <Post />
     </div>
   );
 }

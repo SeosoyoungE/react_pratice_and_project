@@ -6,10 +6,11 @@ function App() {
   const [count, setCount] = useState<number>(0);
 
   return (
+    //리턴값은 단 하나의 최상위 component만 있어야함 ex)Appdiv
     <div className="App">
-      <Post />
-      <Post />
-      <Post />
+      <Post author="소영" body="멋있다" />
+      <Post author="나영" body="바보같다" />
+      <Post author="희정" body="착하다" />
       <Post />
     </div>
   );

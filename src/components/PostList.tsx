@@ -4,13 +4,10 @@ import NewPost from "./NewPost";
 import Modal from "./Modal";
 import { useState } from "react";
 
-function PostList() {
-  const [modalIsVisible, setModalIsVisible] = useState(true);
+function PostList({ modalIsVisible, hideModalHandler }) {
   const [enteredBody, setEnterdBody] = useState("");
   const [enteredName, setEnterdName] = useState("");
-  function hideModalHandler() {
-    setModalIsVisible(false);
-  }
+
   function bodyChangeHandler(event) {
     setEnterdBody(event.target.value);
   }

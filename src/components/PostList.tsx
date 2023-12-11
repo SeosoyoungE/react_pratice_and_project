@@ -21,6 +21,7 @@ function PostList({ modalIsVisible, hideModalHandler }) {
           <NewPost
             onBodyChange={bodyChangeHandler}
             onNameChange={nameChangeHandler}
+            onCancel={hideModalHandler}
           />
         </Modal>
       ) : null}

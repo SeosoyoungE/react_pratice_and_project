@@ -5,11 +5,16 @@ import Modal from "./Modal";
 import { useState } from "react";
 
 function PostList({ modalIsVisible, hideModalHandler }) {
+  const [posts, setPosts] = useState([]);
+
+  function addPostHandler(postData) {
+    setPosts((existingPosts) => [postData, ...existingPosts]);
+  }
   return (
     <>
       {modalIsVisible ? (
         <Modal onClose={hideModalHandler}>
-          <NewPost onCancel={hideModalHandler} />
+          <NewPost onCancel={hideModalHandler} onAddPost={addPostHandler} />
         </Modal>
       ) : null}
 

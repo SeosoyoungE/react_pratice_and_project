@@ -13,7 +13,11 @@ function NewPost({ onCancel, onAddPost }) {
 
   function submitHandler(event) {
     event.preventDefault();
-    const postData = {
+    type Post = {
+      body: string;
+      author: string;
+    };
+    const postData: Post = {
       body: enteredBody,
       author: enteredName,
     };

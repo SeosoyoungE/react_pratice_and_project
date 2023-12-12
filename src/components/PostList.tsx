@@ -8,6 +8,13 @@ function PostList({ modalIsVisible, hideModalHandler }) {
   const [posts, setPosts] = useState([]);
 
   function addPostHandler(postData) {
+    fetch("https://f98cwh-8080.csb.app/posts", {
+      method: "POST",
+      body: JSON.stringify(postData),
+      headers: {
+        "Content-Type": "appplication/json",
+      },
+    });
     setPosts((existingPosts) => [postData, ...existingPosts]);
   }
   return (

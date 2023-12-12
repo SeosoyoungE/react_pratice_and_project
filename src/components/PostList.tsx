@@ -12,7 +12,7 @@ function PostList({ modalIsVisible, hideModalHandler }) {
       method: "POST",
       body: JSON.stringify(postData),
       headers: {
-        "Content-Type": "appplication/json",
+        "Content-Type": "application/json",
       },
     });
     setPosts((existingPosts) => [postData, ...existingPosts]);

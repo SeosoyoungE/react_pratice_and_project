@@ -6,11 +6,17 @@ import { useState, useEffect } from "react";
 
 function PostList({ modalIsVisible, hideModalHandler }) {
   const [posts, setPosts] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
   useEffect(() => {
     async function fetchPosts() {
+      setIsFetching(true);
       const response = await fetch("https://f98cwh-8080.csb.app/posts");
       const resData = await response.json();
+      if (!response.ok) {
+        console.log("post를 받아오지 못했습니다.");
+      }
       setPosts(resData.posts);
+      setIsFetching(false);
     }
     fetchPosts();
   }, []);
@@ -32,20 +38,22 @@ function PostList({ modalIsVisible, hideModalHandler }) {
         </Modal>
       ) : null}
 
-      {posts.length > 0 ? (
+      {!isFetching && posts.length > 0 ? (
         <ul className={styles.posts}>
-          {/* 배열 인식이 가능하기떄문에 배열로 변경 */}
-          {/* map(1)=>(2)은 (1)에서 (2)로 배열식을 변경해줌 */}
           {posts.map((post) => (
             <Post key={post.body} author={post.author} body={post.body} />
           ))}
-          {/*배열 인식의 예시) {[<p key="1">test</p>, <p key="2">test2</p>]} */}
         </ul>
       ) : null}
-      {posts.length === 0 ? (
+      {!isFetching && posts.length === 0 ? (
         <div style={{ textAlign: "center", color: "white" }}>
           <h2>There are no Posts yet.</h2>
           <a>Start adding some!</a>
+        </div>
+      ) : null}
+      {isFetching ? (
+        <div style={{ textAlign: "center", color: "white" }}>
+          <p>Loading Posts...</p>
         </div>
       ) : null}
     </>

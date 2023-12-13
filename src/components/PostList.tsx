@@ -2,11 +2,18 @@ import Post from "./Post";
 import styles from "./PostList.module.css";
 import NewPost from "./NewPost";
 import Modal from "./Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 function PostList({ modalIsVisible, hideModalHandler }) {
   const [posts, setPosts] = useState([]);
-
+  useEffect(() => {
+    async function fetchPosts() {
+      const response = await fetch("https://f98cwh-8080.csb.app/posts");
+      const resData = await response.json();
+      setPosts(resData.posts);
+    }
+    fetchPosts();
+  }, []);
   function addPostHandler(postData) {
     fetch("https://f98cwh-8080.csb.app/posts", {
       method: "POST",
